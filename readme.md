@@ -54,3 +54,27 @@ How we customize express handle error:
   - Access **message** status via `const {status} = err`
   - Default: `const { message = "Something went wrong", status = 500 } = err;`
 
+## 449. & 450. Handling Async Errors & More
+- Send back error not found from database `return next(new AppError(...))`
+- Try catch error from mongoose
+
+## 451. Making wrapAsync function (async utility)
+- Manually we try and catch
+- But we can just wrap an async and automatically throw it 
+  - For syntactic sugar 
+
+```js
+function wrapAsync(fn) {
+	return function (req, res, next) {
+		fn(req, res, next).catch((e) => next(e));
+	};
+}
+```
+
+# 452. Differentiating Mongoose Errors
+- ValidationError
+- CastError
+
+Ways to handle error in mongoose:
+- Handle error name differently in express
+- Custom error message in mongoose
